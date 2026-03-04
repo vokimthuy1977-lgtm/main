@@ -20,7 +20,7 @@ print_u64:
     mov x22, xzr
 loop:
     udiv x9, x19, x20
-    msub w10, x9, x20, x19
+    msub x10, x9, x20, x19
     mov x19, x9
     add w10, w10, #48
     strb w10, [x21]
@@ -30,8 +30,8 @@ loop:
     b loop
 next:
     movz x0, #1
-    add x1, x21
-    movz x2, x22
+    mov x1, x21
+    mov x2, x22
     movz x8, #64
     svc #0
 end:
