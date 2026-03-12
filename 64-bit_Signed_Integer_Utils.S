@@ -57,5 +57,5 @@ wrtPlus:
 end:
     ldp x29, x30, [sp], #0x10
     ldp x19, x20, [sp], #0x10
-
     ret
+#endif
