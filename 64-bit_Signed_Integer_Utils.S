@@ -1,21 +1,29 @@
 #ifndef 64BSIPU
 #define 64BSIPU
 #ifndef __aarch64__
-# error ...
+# error Architecture not supported
 #endif
-.section .data,"aw",@progbits                   hyphenMinus:
-    .ascii "-"                                  .section .bss,"aw",@nobits
+.section .data,"aw",@progbits
+hyphenMinus:
+    .ascii "-"
+.section .bss,"aw",@nobits
 buffer:
     .skip 24
 .section .text,"ax",@progbits
     .global sign
-sign:                                               stp x29, x30, [sp, #-0x20]!
-    stp x19, x20, [sp, #0x10]                       adrp x1, buffer
+sign:
+    stp x29, x30, [sp, #-0x20]!
+    stp x19, x20, [sp, #0x10]
+    adrp x1, buffer
     add x1, x1, #:lo12:buffer
     add x1, x1, #0x17
     prfm pstl1keep, [x1]
     mov x2, xzr
-    mov x19, x0                                     mov x9, xzr                                     movk x9, #0x8000, lsl 48                        tst x9, x19                                     movz x14, #0x0a
+    mov x19, x0
+    mov x9, xzr
+    movk x9, #0x8000, lsl 48
+    tst x9, x19
+    movz x14, #0x0a
     beq loop
     neg x0, x0
 loop:
@@ -49,4 +57,5 @@ wrtPlus:
 end:
     ldp x29, x30, [sp], #0x10
     ldp x19, x20, [sp], #0x10
+
     ret
