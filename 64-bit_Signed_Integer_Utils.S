@@ -1,5 +1,5 @@
-#ifndef 64BSIPU
-#define 64BSIPU
+#ifndef BSIPU64
+#define BSIPU64
 #ifndef __aarch64__
 # error Architecture not supported
 #endif
@@ -59,3 +59,4 @@ end:
     ldp x19, x20, [sp], #0x10
     ret
 #endif
+
